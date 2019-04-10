@@ -340,7 +340,7 @@ func TestSASLSCRAMSHAXXX(t *testing.T) {
 
 		conf := NewConfig()
 		conf.Net.SASL.Mechanism = SASLTypeSCRAMSHA512
-		conf.Net.SASL.SCRAMClient = test.scramClient
+		conf.Net.SASL.SCRAMClientGenerator = func() SCRAMClient { return test.scramClient }
 
 		broker.conf = conf
 		dialer := net.Dialer{
